@@ -1,15 +1,14 @@
 import os
 import tkinter as tk
-from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
+from tkinter import filedialog, messagebox
 
 class ImageResizer:
     """
     The main class Image Resize
     """
-    def __init__(self, win, APP_VERSION, BG_COLOR):
+    def __init__(self, win, BG_COLOR):
         self.win = win
-        self.win.title(f"Resize Img V {APP_VERSION}")
 
         self.BG_COLOR = BG_COLOR
 

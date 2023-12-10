@@ -1,0 +1,39 @@
+###########################
+## Resize image v 0.0.5 ###
+###########################
+
+Todo:
+    * Improve design
+
+
+###########################
+######## Updates ##########
+###########################
+
+0.0.5 [10/12/2023]
+- refactor codes
+- if icon.ico not present it will be automatic downloaded
+
+0.0.4 [10/12/2023]
+- Image is automatic deplaced in fodlder "resize" (the folder is created by app)
+- resizing width and height input in column
+- add a config.json for more configuration from user
+- add btn in menu for show images directory
+- fix bug if config.json dosn't exist
+- fix image only "jpg" after resizing, now is based from default extension
+- fix error/warning/info messages box
+- refactor codes
+
+0.0.3 [9/12/2023]
+- user can rename the image when resizing
+- add menu
+- add btn for quit application
+- add min and max width & height app
+
+0.0.2 [8/12/2023]
+- possible to add a width & height
+- input/label
+- possible to update image
+
+0.0.1 [8/12/2023]
+- Creation interface

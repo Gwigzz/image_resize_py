@@ -1,4 +1,4 @@
-## Image resize V 0.0.4
+## Image resize V 0.0.5
 
 * A simple application for resizing images
 
@@ -6,9 +6,12 @@
 ``` python
 import os
 import json
+import requests
 import webbrowser
 import tkinter as tk
+from setup import SetupManager
 from PIL import Image, ImageTk
+from image_resizer import ImageResizer
 from tkinter import filedialog, messagebox
 ```
 
@@ -23,3 +26,6 @@ The config.json file is automatically generated if it doesn't exist.
     "bg_color": "#008EC9"
 }
 ```
+
+### Compilation
+> pyinstaller --onefile --windowed --noconsole --icon="ico.ico" main.py
