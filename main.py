@@ -5,7 +5,6 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import filedialog, messagebox
 
-
 APP_VERSION     = "0.0.4"
 
 # Try to Load the informations of configuration from JSON file
