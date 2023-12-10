@@ -1,15 +1,33 @@
 #coding:utf-8
 import os
+import json
 import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import filedialog, messagebox
 
-APP_VERSION     = "0.3"
 
-WIN_WIDTH       = 850
-WIN_HEIGHT      = 600
+APP_VERSION     = "0.0.4"
 
-BG_COLOR        = "#008EC9"
+# Try to Load the informations of configuration from JSON file
+try:
+    with open("config.json", "r") as config_file:
+        data_config_json = json.load(config_file)
+except FileNotFoundError:
+    messagebox.showwarning("Info Config","The config.json file was not found, we created it !")
+    # default config.json
+    default_config = {
+        "window_width": 850,
+        "window_height": 600,
+        "bg_color": "#008EC9"
+    }
+    with open("config.json", "w") as config_file:
+        json.dump(default_config, config_file)
+    # load the informations of config after creation
+    data_config_json = default_config
+
+WIN_WIDTH   = data_config_json.get("window_width", 850)
+WIN_HEIGHT  = data_config_json.get("window_height", 600)
+BG_COLOR    = data_config_json.get("bg_color", "#008EC9")
 
 def open_resize_directory():
     current_directory = os.getcwd()
@@ -18,7 +36,6 @@ def open_resize_directory():
     # Check if directory 'resize' exist
     if os.path.exists(resize_directory):
         os.startfile(resize_directory)
-        # messagebox.showinfo("Directory", f"The directory: {resize_directory}")
         messagebox.showinfo("Open Dir", "The directory has been opened")
     else:
         messagebox.showerror("Error", "The folder 'resize' cannot be found")
