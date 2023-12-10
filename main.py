@@ -1,6 +1,7 @@
 #coding:utf-8
 import os
 import json
+import webbrowser
 import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import filedialog, messagebox
@@ -12,7 +13,7 @@ try:
     with open("config.json", "r") as config_file:
         data_config_json = json.load(config_file)
 except FileNotFoundError:
-    messagebox.showwarning("Info Config","The config.json file was not found, we created it !")
+    messagebox.showwarning("Missing config.json","The config.json file was not found, we created it !")
     # default config.json
     default_config = {
         "window_width": 850,
@@ -39,6 +40,9 @@ def open_resize_directory():
     else:
         messagebox.showerror("Error", "The folder 'resize' cannot be found")
 
+
+def open_web_page_source_code():
+    webbrowser.open("https://github.com/Gwigzz/image_resize_py")
 
 class ImageResizer:
     """
@@ -114,7 +118,7 @@ class ImageResizer:
         try:
 
             if not hasattr(self, 'image'):
-                messagebox.showerror("Error", "Please select an image")
+                messagebox.showwarning("Warning", "Please select an image")
                 return
 
             width = int(self.width_var.get())
@@ -142,7 +146,7 @@ class ImageResizer:
 
             messagebox.showinfo("Completed", "The image has been successfully resized and saved.")
         except ValueError:
-            messagebox.showerror("Error", "Please enter valid dimensions.")
+            messagebox.showwarning("Warning", "Please enter valid dimensions.")
 
 
 
@@ -169,11 +173,12 @@ if __name__ == "__main__":
     mainMenu = tk.Menu(win)
 
     first_menu = tk.Menu(mainMenu, tearoff=0)
-    first_menu.add_command(label="View Images", command=open_resize_directory)
+    first_menu.add_command(label="Images folder", command=open_resize_directory)
     first_menu.add_command(label="Exit", command=win.quit)
 
     second_menu = tk.Menu(mainMenu, tearoff=0)
-    second_menu.add_command(label="Help", state="normal")
+    second_menu.add_command(label="Source code", state="normal", command=open_web_page_source_code)
+    # second_menu.add_command(label="Help", state="normal")
     second_menu.add_command(label=f"Version: {APP_VERSION }", state="disabled", underline=1)
 
     mainMenu.add_cascade(label="Menu", menu=first_menu)

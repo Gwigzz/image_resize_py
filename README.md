@@ -6,6 +6,7 @@
 ``` python
 import os
 import json
+import webbrowser
 import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import filedialog, messagebox
@@ -13,7 +14,7 @@ from tkinter import filedialog, messagebox
 
 ### config.json
 `
-the file is automatically generated if it doesn't exist
+The config.json file is automatically generated if it doesn't exist.
 `
 ``` json
 {
