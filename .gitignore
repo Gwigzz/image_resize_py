@@ -1,10 +1,9 @@
+__pycache__
+
 build
 dist
 main.spec
 
-resize/*.jpg
-resize/*.png
-resize/*.gif
-resize/*.jpeg
+resize
 
 updates.txt

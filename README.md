@@ -2,7 +2,7 @@
 
 * A simple application for resizing images
 
-### Require python libs
+### Python libs used in project
 ``` python
 import os
 import json
