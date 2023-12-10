@@ -1,3 +1,4 @@
+#coding:utf-8
 import os
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -5,46 +6,51 @@ from tkinter import filedialog, messagebox
 
 APP_VERSION     = "0.2"
 
-BG_COLOR        = "#008EC9"
-
 WIN_WIDTH       = 850
 WIN_HEIGHT      = 600
 
+BG_COLOR        = "#008EC9"
+
 
 class ImageResizer:
+    """
+    The main class Image Resize
+    """
     def __init__(self, win):
         self.win = win
         self.win.title(f"Resize Img V {APP_VERSION}")
 
-        # Variables pour stocker les dimensions
+        # var for save the dimensions
         self.width_var = tk.StringVar(value="150")
         self.height_var = tk.StringVar(value="115")
 
         self.image_name_var = tk.StringVar(value="resized_image") # deffault value
 
-        # Interface utilisateur
+        # User Interface
         self.create_widgets()
 
     def create_widgets(self):
-        # Label pour afficher l'image
+        # Label for display image
         self.image_label = tk.Label(self.win, text=f"Resize image V {APP_VERSION}", background=BG_COLOR, font=('Helvetica', 25), fg="#fff")
         self.image_label.pack(pady=10)
 
-        # Bouton pour sélectionner l'image
+        # Btn for select image
         select_button = tk.Button(self.win, text="Sélectionner une image", command=self.load_image)
         select_button.pack(pady=10)
 
-        # Entrées pour les dimensions
-        width_label = tk.Label(self.win, text="Largeur:", background=BG_COLOR, fg="#fff")
-        width_label.pack()
-        width_entry = tk.Entry(self.win, textvariable=self.width_var)
-        width_entry.pack()
+        # Dimension Frame label/entry for W & H
+        dimension_frame = tk.Frame(self.win, background="orange")
+        dimension_frame.pack(side="top", padx=5, pady=10)
 
-        height_label = tk.Label(self.win, text="Hauteur:", background=BG_COLOR, fg="#fff")
-        height_label.pack()
-        height_entry = tk.Entry(self.win, textvariable=self.height_var)
-        height_entry.pack()
+        width_label = tk.Label(dimension_frame, text="Largeur:", background=BG_COLOR, fg="#fff")
+        width_label.pack(side="left")
+        width_entry = tk.Entry(dimension_frame, textvariable=self.width_var, width=6)
+        width_entry.pack(side="left")
 
+        height_label = tk.Label(dimension_frame, text="Hauteur:", background=BG_COLOR, fg="#fff")
+        height_label.pack(side="left")
+        height_entry = tk.Entry(dimension_frame, textvariable=self.height_var, width=6)
+        height_entry.pack(side="left")
 
         # new image name (not required)
         image_name_label = tk.Label(self.win, text="Nom image (optionnel):", background=BG_COLOR, fg="#fff")
@@ -52,7 +58,7 @@ class ImageResizer:
         image_name_entry = tk.Entry(self.win, textvariable=self.image_name_var)
         image_name_entry.pack()
 
-        # Bouton pour redimensionner l'image
+        # Btn resizing img
         resize_button = tk.Button(self.win, text="Redimensionner", command=self.resize_image)
         resize_button.pack(pady=10)
 
@@ -80,23 +86,23 @@ class ImageResizer:
             width = int(self.width_var.get())
             height = int(self.height_var.get())
 
-            # Créer le dossier 'resize' s'il nexiste pas
+            # Creat folder "resize" if not exist
             output_folder = f"resize"
             os.makedirs(output_folder, exist_ok=True)
 
-            # Obtenir le nom de l'image saisi par l'utilisateur
+            # get the image name from user
             user_image_name = self.image_name_var.get().strip()
             if not user_image_name:
                 user_image_name = "resized_image"
 
-             # Obtenir l'extension de l'image d'origine
+             # get the original extension
             original_image_path = getattr(self.image_label, 'file_path', '')
             _, original_extension = os.path.splitext(original_image_path)
 
-            # Redimensionne l'image
+            # resizing image
             resized_image = self.image.resize((width, height), Image.Resampling.BICUBIC)
 
-            # Enregistre l'image redimensionnée dans le dossier courant
+            # save the image resizing in "resize" folder
             save_path = os.path.join(output_folder, f"{user_image_name}{original_extension}") 
             resized_image.save(save_path)
 
@@ -110,12 +116,9 @@ if __name__ == "__main__":
     win = tk.Tk()
     app = ImageResizer(win)
 
-    # win.title(f"Resize Img V {APP_VERSION}")
-
     win.minsize(620, 480)
     win.maxsize(1280, 720)
 
-    win.config(background=BG_COLOR)
    
     """
     Centre la fenêtre
@@ -127,10 +130,27 @@ if __name__ == "__main__":
     geo = "{}x{}+{}+{}".format(WIN_WIDTH, WIN_HEIGHT, posX, posY)
     win.geometry(geo)
 
+
+    # menu
+    mainMenu = tk.Menu(win)
+
+    first_menu = tk.Menu(mainMenu, tearoff=0)
+    first_menu.add_command(label="Quitter", command=win.quit)
+
+    second_menu = tk.Menu(mainMenu, tearoff=0)
+    second_menu.add_command(label="Help", state="disabled")
+
+    mainMenu.add_cascade(label="Menu", menu=first_menu)
+    mainMenu.add_cascade(label="About", menu=second_menu)
+
+
     # btn qui
     btn_quit = tk.Button(win, text="Quitter", command=win.quit)
     btn_quit.pack(pady=20, padx=20, side="right", anchor="se")  
 
 
+
+
+    win.config(background=BG_COLOR, menu=mainMenu)
 
     win.mainloop()
