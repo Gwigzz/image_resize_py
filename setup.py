@@ -1,21 +1,29 @@
-import json
 import os
+import json
+import ctypes
 import requests
-from tkinter import messagebox
 import webbrowser
+from tkinter import messagebox
 
-APP_VERSION         = "0.0.5"
-JSON_FILE_NAME      = "config.json"
-ICON_URL            = "https://raw.githubusercontent.com/Gwigzz/image_resize_py/main/ico.ico"
-SOURCE_CODE_LINK    = "https://github.com/Gwigzz/image_resize_py"
+
+
+APP_VERSION             = "0.0.5"
+TITLE_APP               = f"Resizer IMG V {APP_VERSION}"
+
+JSON_FILE_CONF_NAME     = "config.json"
+
+ICON_URL                = "https://raw.githubusercontent.com/Gwigzz/image_resize_py/main/ico.ico"
+SOURCE_CODE_LINK        = "https://github.com/Gwigzz/image_resize_py"
+
 
 class SetupManager:
     
     def __init__(self):
 
         self.APP_VERSION        = APP_VERSION
-        self.JSON_FILE_NAME     = JSON_FILE_NAME
+        self.JSON_FILE_NAME     = JSON_FILE_CONF_NAME
         self.ICON_URL           = ICON_URL
+        self.TITLE_APP          = TITLE_APP
 
     def setup_config_json_file(self):
         try:
@@ -93,3 +101,11 @@ class UIManager:
 
     def open_web_page_source_code(self):
         webbrowser.open(f"{self.SOURCE_CODE}")
+
+    
+    
+    # def set_app_user_model_id(self, app_id):
+    #     try:
+    #         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
+    #     except Exception as e:
+    #         print(f"Failed to set AppUserModelID: {e}")

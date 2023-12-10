@@ -4,6 +4,8 @@
 
 Todo:
     * Improve design
+    * drag and drop image
+    * show the original dimension size
 
 
 ###########################

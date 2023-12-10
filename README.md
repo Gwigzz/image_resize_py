@@ -6,6 +6,7 @@
 ``` python
 import os
 import json
+import ctypes
 import requests
 import webbrowser
 import tkinter as tk
