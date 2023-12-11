@@ -1,11 +1,11 @@
 ###########################
-## Resize image v 0.0.5 ###
+## Resizer image v 0.0.5 ##
 ###########################
 
 Todo:
     * Improve design
     * drag and drop image
-    * show the original dimension size
+    * btn's design
 
 
 ###########################
@@ -15,9 +15,13 @@ Todo:
 0.0.5 [10/12/2023]
 - refactor codes
 - if icon.ico not present it will be automatic downloaded
+- if not image name, renamed with timestamp
+- show the original dimension
+- possible to remove image from interface
+- possible to change the folder resize image name from config.json
 
 0.0.4 [10/12/2023]
-- Image is automatic deplaced in fodlder "resize" (the folder is created by app)
+- image is automatic deplaced in fodlder "resize" (the folder is created by app)
 - resizing width and height input in column
 - add a config.json for more configuration from user
 - add btn in menu for show images directory

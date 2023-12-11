@@ -5,15 +5,17 @@
 ### Python libs used in project
 ``` python
 import os
+import time
 import json
 import ctypes
 import requests
 import webbrowser
 import tkinter as tk
-from setup import SetupManager
+from tkinter import ttk
+from tkinter.ttk import *
 from PIL import Image, ImageTk
-from image_resizer import ImageResizer
-from tkinter import filedialog, messagebox
+from setup import SetupManager, UIManager
+from tkinter import messagebox, filedialog, ttk
 ```
 
 ### config.json
@@ -24,9 +26,10 @@ The config.json file is automatically generated if it doesn't exist.
 {
     "window_width": 850,
     "window_height": 600,
-    "bg_color": "#008EC9"
+    "bg_color": "#008EC9",
+    "resized_image_folder_name": "resize"
 }
 ```
 
-### Compilation
+#### Compilation with pyinstaller
 > pyinstaller --onefile --windowed --noconsole --icon="ico.ico" main.py
